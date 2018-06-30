@@ -49,3 +49,12 @@ function shuffle(array) {
 
 // CSS playable across all browsers, animations for click, match, and incorrect.
 // Code optimizations: keyboard shortcuts
+
+// select all the cards
+const allCards = document.querySelectorAll('.card');
+
+allCards.forEach(function (card) {
+    card.addEventListener('click', function (e) {
+        card.classList.add('open', 'show');
+    });
+})
