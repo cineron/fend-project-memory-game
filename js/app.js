@@ -36,3 +36,16 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+// ----- From Rubric -----
+
+// Game logic - random shuffle
+// Game login - Win: all cards match
+// Congratulations Popup - "time to win, star rating, and play again?"
+// Restart Button - resets board, timer, star rating
+// Star rating
+// Timer
+// Move Counter
+
+// CSS playable across all browsers, animations for click, match, and incorrect.
+// Code optimizations: keyboard shortcuts
