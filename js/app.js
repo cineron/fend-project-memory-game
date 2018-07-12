@@ -57,4 +57,20 @@ allCards.forEach(function (card) {
     card.addEventListener('click', function (e) {
         card.classList.add('open', 'show');
     });
-})
+});
+
+function createCard(className) {
+
+};
+
+function generateGameboard(params) {
+    
+}
+
+function compareCards(cardA, cardB) {
+    
+}
+
+function gameOver(params) {
+    
+}
