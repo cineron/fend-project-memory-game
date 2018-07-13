@@ -50,18 +50,41 @@ function shuffle(array) {
 // CSS playable across all browsers, animations for click, match, and incorrect.
 // Code optimizations: keyboard shortcuts
 
-// select all the cards
-const allCards = document.querySelectorAll('.card');
+// -----Udacity Tips Videos ----// 
+// tips from https://www.youtube.com/watch?v=oECVwum-7Zc - Ryan Waite
+// ----------------------------//git
 
-allCards.forEach(function (card) {
-    card.addEventListener('click', function (e) {
-        card.classList.add('open', 'show');
+/*----- select all the cards -----*/
+let allCards = document.querySelectorAll('.card'); //store all the '.cards' in a variable
+let openCards = []; //create an array to store "open" cards
+
+allCards.forEach(function (card) { /* loop through stored cards */
+    card.addEventListener('click', function (e) { 
+        
+        
+        
+
+        if (openCards.length >= 2) {
+            //reset timer
+            // hide cards
+        } else {
+            card.classList.add('open', 'show'); //add open show to card
+            openCards.push(card); // put the 'open' cards in an array
+        }
+
+
     });
 });
 
-function createCard(className) {
 
-};
+
+
+/*
+
+function createCard(className) {
+    var element = document.createElement(tagName[, options]);
+
+}
 
 function generateGameboard(params) {
     
@@ -74,3 +97,94 @@ function compareCards(cardA, cardB) {
 function gameOver(params) {
     
 }
+
+*/
+/*
+var count = 5;
+function moveCounter(bool) {
+    if (bool === true) {
+        count++;
+    }
+    
+    else if (bool === false) {
+        count--
+    }
+}
+//for console
+//
+// var stars = document.querySelectorAll('ul.stars li');
+// document.querySelector('ul.stars')
+// document.querySelector('ul.stars').removeChild(stars[0])
+
+
+function activeCards () {
+    // addEvent Listner
+    // element.addEventListener('click')
+    document.queryCommandEnabled('li.card').forEach(function(card){
+        card.addEventListener('click', function(){
+            if (lastFlipped) {
+                console.log(lastFlipped, card);
+            }
+    
+            else {
+                lastFlipped = card;
+            }
+        });
+    });
+}
+
+function deactivateCards () {
+    // remove event listners
+}
+
+var matchedCards = [];
+
+if (matchedCards.length === 16) {
+    // logic for game is won
+}
+
+// How to prevent same card from being clicked
+var lastFlipped = null;
+
+// How to shuffle and reset
+// collect cards
+var cards = document.querySelectorAll('ul.deck li')
+// put them into a new array
+shuffle(Array.from(cards)
+// clear the ul and append it back to the shuffle above
+
+// creating Timer
+use setInterval and clearInterval
+
+// starting and stopping timer
+var time = 0;
+var timer =  setInterval(function () {
+    time++;
+    console.log(time);
+}, 1000);
+
+function setTimer() {
+    timer = setInterval(function () {
+    time++;
+    console.log(time);
+}, 1000);     
+}
+
+function clearTimer() {
+    clearInterval(timer //var of timer);
+}
+
+// timer button
+resetBtn.addEventListener('click', function() {
+    clearTimer();
+    function setTimer();
+})
+
+// timer starts when first card is clicked
+var initialClick = false; // set to true when first card clicke and start timer
+
+// ORGANIZING
+// put functions at top and functions towards bottom
+
+
+*/
