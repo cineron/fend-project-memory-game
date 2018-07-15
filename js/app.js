@@ -61,18 +61,21 @@ let openCards = []; //create an array to store "open" cards
 
 allCards.forEach(function (card) { /* loop through stored cards */
     card.addEventListener('click', function (e) { 
-        openCards.push(card); // put the 'open' cards in an array
-        card.classList.add('open', 'show'); //add open show to card
-        console.log('Open Cards:', openCards.length)
+
+        if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
+            openCards.push(card); // put the 'open' cards in an array
+            card.classList.add('open', 'show'); //add open show to card
+            //console.log('Open Cards:', openCards.length)
         
 
-        if (openCards.length == 2) {
-            setTimeout(() => {
-                openCards.forEach(card => {
-                    card.classList.remove('open', 'show'); //hide cards 
-                });
-                openCards = [];
-            }, 1000);
+            if (openCards.length == 2) {
+                setTimeout(() => {
+                    openCards.forEach(card => {
+                        card.classList.remove('open', 'show'); //hide cards 
+                    });
+                    openCards = [];
+                }, 1000);
+            }
         }
     });
 });
