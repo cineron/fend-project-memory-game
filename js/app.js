@@ -57,6 +57,7 @@ function shuffle(array) {
 /*----- select all the cards -----*/
 let allCards = document.querySelectorAll('.card'); //store all the '.cards' in a variable
 let openCards = []; //create an array to store "open" cards
+//let closeCards = 
 
 allCards.forEach(function (card) { /* loop through stored cards */
     card.addEventListener('click', function (e) { 
@@ -64,12 +65,15 @@ allCards.forEach(function (card) { /* loop through stored cards */
         
         
 
-        if (openCards.length >= 2) {
-            //reset timer
-            // hide cards
-        } else {
-            card.classList.add('open', 'show'); //add open show to card
+        if (openCards.length <= 1) {
             openCards.push(card); // put the 'open' cards in an array
+            card.classList.add('open', 'show'); //add open show to card
+
+        } else {
+            setTimeout(() => {
+                closeCards = []; //reset array
+                card.classList.remove('open', 'show'); //hide cards
+            }, 1000);
         }
 
 
@@ -99,7 +103,7 @@ function gameOver(params) {
 }
 
 */
-/*
+/* =====
 var count = 5;
 function moveCounter(bool) {
     if (bool === true) {
@@ -180,11 +184,11 @@ resetBtn.addEventListener('click', function() {
     function setTimer();
 })
 
+===== */
+
 // timer starts when first card is clicked
-var initialClick = false; // set to true when first card clicke and start timer
+//var initialClick = false; // set to true when first card clicke and start timer
 
 // ORGANIZING
 // put functions at top and functions towards bottom
 
-
-*/
