@@ -1,8 +1,29 @@
 /*
  * Create a list that holds all of your cards
  */
+let cards = [
+    "fa-diamond", "fa-diamond",
+    "fa-paper-plane-o", "fa-paper-plane-o",
+    "fa-anchor", "fa-anchor",
+    "fa-fa-bomb", "fa-fa-bomb",
+    "fa-bolt", "fa-bolt",
+    "fa-cube", "fa-cube",
+    "fa-fa-leaf", "fa-fa-leaf",
+    "fa-fa-bicycle", "fa-fa-bicycle",
+];
 
+function generateCard(card) {
+    return `<li class="card"><i class="fa ${card}"></i></li>`
+}
 
+function generateDeck() {
+    let deck = document.querySelector('.deck');
+    let cardHTML = cards.map(function(card) {
+        return generateCard(card);
+    })
+    deck.innerHTML = cardHTML.join('');
+    return deck.innerHTML
+}
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -52,7 +73,22 @@ function shuffle(array) {
 
 // -----Udacity Tips Videos ----// 
 // tips from https://www.youtube.com/watch?v=oECVwum-7Zc - Ryan Waite
-// ----------------------------//git
+// and  https://www.youtube.com/watch?v=_rUH-sEs68Y
+// ----------------------------//
+
+// initialize game
+function initGame() {
+    // generate and shuffle deck
+    generateDeck();
+    // reset timer
+    // reset stars
+    // reset moves counter
+}
+
+// call initGame
+initGame();
+
+
 
 /*----- select all the cards -----*/
 let allCards = document.querySelectorAll('.card'); //store all the '.cards' in a variable
@@ -62,6 +98,12 @@ let openCards = []; //create an array to store "open" cards
 allCards.forEach(function (card) { /* loop through stored cards */
     card.addEventListener('click', function (e) { 
 
+        // check if cards match
+        var firstCardType = openCards[0].querySelector('i').classList.item(1);
+        console.log(firstCardType);
+        
+        
+        // if cards Don't match - clear
         if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
             openCards.push(card); // put the 'open' cards in an array
             card.classList.add('open', 'show'); //add open show to card
