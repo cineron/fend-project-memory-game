@@ -5,11 +5,11 @@ let cards = [
     "fa-diamond", "fa-diamond",
     "fa-paper-plane-o", "fa-paper-plane-o",
     "fa-anchor", "fa-anchor",
-    "fa-fa-bomb", "fa-fa-bomb",
+    "fa-bomb", "fa-bomb",
     "fa-bolt", "fa-bolt",
     "fa-cube", "fa-cube",
-    "fa-fa-leaf", "fa-fa-leaf",
-    "fa-fa-bicycle", "fa-fa-bicycle",
+    "fa-leaf", "fa-leaf",
+    "fa-bicycle", "fa-bicycle",
 ];
 
 function generateCard(card) {
@@ -73,7 +73,7 @@ function shuffle(array) {
 
 // -----Udacity Tips Videos ----// 
 // tips from https://www.youtube.com/watch?v=oECVwum-7Zc - Ryan Waite
-// and  https://www.youtube.com/watch?v=_rUH-sEs68Y
+// and  Mike Wales https://www.youtube.com/watch?v=_rUH-sEs68Y
 // ----------------------------//
 
 // initialize game
@@ -98,26 +98,50 @@ let openCards = []; //create an array to store "open" cards
 allCards.forEach(function (card) { /* loop through stored cards */
     card.addEventListener('click', function (e) { 
 
-        // check if cards match
-        var firstCardType = openCards[0].querySelector('i').classList.item(1);
-        console.log(firstCardType);
+        //add open show to classes to card
+        card.classList.add('open', 'show'); 
+        
+        // put the 'open' cards in an array
+        openCards.push(card);
+
+        
+
+        if (openCards.length == 2) {
+            //assign the first card in the array to a variable
+            var firstCardType = openCards[0].querySelector('i').classList.item(1);
+
+            //assign the second card in the array to a variable
+            var secondCardType = openCards[1].querySelector('i').classList.item(1);
+            setTimeout(() => {
+                openCards.forEach(card => {
+                    card.classList.remove('open', 'show'); //hide cards 
+                });
+                openCards = [];
+            }, 1000);
+
+            // check if cards match
+            if (firstCardType === secondCardType){
+                console.log(firstCardType);
+                console.log(secondCardType);
+                openCards.forEach(card => {
+                    card.classList.add('match');
+                });
+            }
+            
+            
+        }
+
+
         
         
         // if cards Don't match - clear
         if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
-            openCards.push(card); // put the 'open' cards in an array
-            card.classList.add('open', 'show'); //add open show to card
+            
+            
             //console.log('Open Cards:', openCards.length)
         
 
-            if (openCards.length == 2) {
-                setTimeout(() => {
-                    openCards.forEach(card => {
-                        card.classList.remove('open', 'show'); //hide cards 
-                    });
-                    openCards = [];
-                }, 1000);
-            }
+
         }
     });
 });
