@@ -94,6 +94,7 @@ initGame();
 let allCards = document.querySelectorAll('.card'); //store all the '.cards' in a variable
 let openCards = []; //create an array to store "open" cards
 //let closeCards = 
+let matchedCards = []; //array for matched cards
 
 allCards.forEach(function (card) { /* loop through stored cards */
     card.addEventListener('click', function (e) { 
@@ -125,10 +126,14 @@ allCards.forEach(function (card) { /* loop through stored cards */
                 console.log(secondCardType);
                 openCards.forEach(card => {
                     card.classList.add('match');
+                    //push matched cards into an array
+                    matchedCards.push(card);
                 });
             }
-            
-            
+        }
+
+        if (matchedCards.length === 16){
+            console.log("You win!")
         }
 
 
