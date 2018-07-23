@@ -18,7 +18,7 @@ function generateCard(card) {
 
 function generateDeck() {
     let deck = document.querySelector('.deck');
-    let cardHTML = cards.map(function(card) {
+    let cardHTML = shuffle(cards).map(function(card) {
         return generateCard(card);
     })
     deck.innerHTML = cardHTML.join('');
