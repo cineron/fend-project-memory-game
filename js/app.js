@@ -1,3 +1,6 @@
+//@ts-check
+
+
 /*
  * Create a list that holds all of your cards
  */
@@ -22,7 +25,7 @@ function generateDeck() {
         return generateCard(card);
     })
     deck.innerHTML = cardHTML.join('');
-    return deck.innerHTML
+    return deck.innerHTML;
 }
 /*
  * Display the cards on the page
@@ -45,6 +48,18 @@ function shuffle(array) {
 
     return array;
 }
+let moveCounter = document.querySelector(".moves");
+let numberOfMoves = 0;
+function moveRating() {
+    numberOfMoves++;
+    moveCounter.innerText = numberOfMoves.toString();
+}
+
+// Restart Button
+let restartBtn = document.querySelector(".restart");
+restartBtn.addEventListener("click", function(){
+    initGame();
+});
 
 
 /*
@@ -71,7 +86,7 @@ function shuffle(array) {
 // CSS playable across all browsers, animations for click, match, and incorrect.
 // Code optimizations: keyboard shortcuts
 
-// -----Udacity Tips Videos ----// 
+// -----Udacity Tips Videos ----//
 // tips from https://www.youtube.com/watch?v=oECVwum-7Zc - Ryan Waite
 // and  Mike Wales https://www.youtube.com/watch?v=_rUH-sEs68Y
 // ----------------------------//
@@ -93,19 +108,20 @@ initGame();
 /*----- select all the cards -----*/
 let allCards = document.querySelectorAll('.card'); //store all the '.cards' in a variable
 let openCards = []; //create an array to store "open" cards
-//let closeCards = 
+//let closeCards =
 let matchedCards = []; //array for matched cards
 
 allCards.forEach(function (card) { /* loop through stored cards */
-    card.addEventListener('click', function (e) { 
+    card.addEventListener('click', function (e) {
 
         //add open show to classes to card
-        card.classList.add('open', 'show'); 
-        
+        card.classList.add('open', 'show');
+
+
         // put the 'open' cards in an array
         openCards.push(card);
 
-        
+        moveRating();
 
         if (openCards.length == 2) {
             //assign the first card in the array to a variable
@@ -115,7 +131,7 @@ allCards.forEach(function (card) { /* loop through stored cards */
             var secondCardType = openCards[1].querySelector('i').classList.item(1);
             setTimeout(() => {
                 openCards.forEach(card => {
-                    card.classList.remove('open', 'show'); //hide cards 
+                    card.classList.remove('open', 'show'); //hide cards
                 });
                 openCards = [];
             }, 1000);
@@ -137,14 +153,14 @@ allCards.forEach(function (card) { /* loop through stored cards */
         }
 
 
-        
-        
+
+
         // if cards Don't match - clear
         if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
-            
-            
+
+
             //console.log('Open Cards:', openCards.length)
-        
+
 
 
         }
@@ -162,15 +178,15 @@ function createCard(className) {
 }
 
 function generateGameboard(params) {
-    
+
 }
 
 function compareCards(cardA, cardB) {
-    
+
 }
 
 function gameOver(params) {
-    
+
 }
 
 */
@@ -180,7 +196,7 @@ function moveCounter(bool) {
     if (bool === true) {
         count++;
     }
-    
+
     else if (bool === false) {
         count--
     }
@@ -200,7 +216,7 @@ function activeCards () {
             if (lastFlipped) {
                 console.log(lastFlipped, card);
             }
-    
+
             else {
                 lastFlipped = card;
             }
@@ -242,7 +258,7 @@ function setTimer() {
     timer = setInterval(function () {
     time++;
     console.log(time);
-}, 1000);     
+}, 1000);
 }
 
 function clearTimer() {
