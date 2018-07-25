@@ -1,6 +1,5 @@
 //@ts-check
 
-
 /*
  * Create a list that holds all of your cards
  */
@@ -16,14 +15,14 @@ let cards = [
 ];
 
 function generateCard(card) {
-    return `<li class="card"><i class="fa ${card}"></i></li>`
+    return `<li class="card"><i class="fa ${card}"></i></li>`;
 }
 
 function generateDeck() {
     let deck = document.querySelector('.deck');
     let cardHTML = shuffle(cards).map(function(card) {
         return generateCard(card);
-    })
+    });
     deck.innerHTML = cardHTML.join('');
     return deck.innerHTML;
 }
@@ -52,7 +51,7 @@ let moveCounter = document.querySelector(".moves");
 let numberOfMoves = 0;
 function moveRating() {
     numberOfMoves++;
-    moveCounter.innerText = numberOfMoves.toString();
+    moveCounter.innerText = numberOfMoves; //Q: why doesn't this have to include .toString() ?
 }
 
 // Restart Button
@@ -103,8 +102,6 @@ function initGame() {
 // call initGame
 initGame();
 
-
-
 /*----- select all the cards -----*/
 let allCards = document.querySelectorAll('.card'); //store all the '.cards' in a variable
 let openCards = []; //create an array to store "open" cards
@@ -114,13 +111,18 @@ let matchedCards = []; //array for matched cards
 allCards.forEach(function (card) { /* loop through stored cards */
     card.addEventListener('click', function (e) {
 
+        // if cards Don't match - clear
+        if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
+
         //add open show to classes to card
         card.classList.add('open', 'show');
-
-
+            
+        
         // put the 'open' cards in an array
         openCards.push(card);
-
+        
+        // console.log('Open Cards:', openCards.length)
+        
         moveRating();
 
         if (openCards.length == 2) {
@@ -129,13 +131,7 @@ allCards.forEach(function (card) { /* loop through stored cards */
 
             //assign the second card in the array to a variable
             var secondCardType = openCards[1].querySelector('i').classList.item(1);
-            setTimeout(() => {
-                openCards.forEach(card => {
-                    card.classList.remove('open', 'show'); //hide cards
-                });
-                openCards = [];
-            }, 1000);
-
+            
             // check if cards match
             if (firstCardType === secondCardType){
                 console.log(firstCardType);
@@ -146,22 +142,22 @@ allCards.forEach(function (card) { /* loop through stored cards */
                     matchedCards.push(card);
                 });
             }
+            
+            setTimeout(() => {
+                openCards.forEach(card => {
+                    card.classList.remove('open', 'show'); //hide cards
+                });
+                openCards = [];
+            }, 1000);
+            
+            // clearTimeout(timer);
+
+
         }
 
         if (matchedCards.length === 16){
-            console.log("You win!")
+            console.log("You win!");
         }
-
-
-
-
-        // if cards Don't match - clear
-        if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
-
-
-            //console.log('Open Cards:', openCards.length)
-
-
 
         }
     });
