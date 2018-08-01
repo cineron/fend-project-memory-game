@@ -105,20 +105,9 @@ function initGame() {
 initGame();
 
 /*----- select all the cards -----*/
-<<<<<<< HEAD
 
 //TODO: Look at putting allCards into a function
 
-let allCards = document.querySelectorAll('.card'); //store all the '.cards' in a variable
-let openCards = []; //create an array to store "open" cards
-//let closeCards =
-let matchedCards = []; //array for matched cards
-||||||| merged common ancestors
-let allCards = document.querySelectorAll('.card'); //store all the '.cards' in a variable
-let openCards = []; //create an array to store "open" cards
-//let closeCards =
-let matchedCards = []; //array for matched cards
-=======
 //store all the '.cards' in a variable
 let allCards = document.querySelectorAll('.card'); 
 
@@ -127,112 +116,21 @@ let openCards = [];
 
 //array for matched cards
 let matchedCards = []; 
->>>>>>> 8219f0865c55c1c88a3615667777ac32c96a2425
 
 allCards.forEach(function (card) { /* loop through stored cards */
-<<<<<<< HEAD
-    card.addEventListener('click', function () {
-||||||| merged common ancestors
-    card.addEventListener('click', function (e) {
-=======
     //add eventListener for cards
     card.addEventListener('click', function (e) {
->>>>>>> 8219f0865c55c1c88a3615667777ac32c96a2425
 
         // if cards Don't match - clear
         if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
 
-<<<<<<< HEAD
-            //add open show to classes to card
-            card.classList.add('open', 'show');
-                
-            
-            // put the 'open' cards in an array
-            openCards.push(card);
-            
-            // console.log('Open Cards:', openCards.length)
-||||||| merged common ancestors
-        //add open show to classes to card
-        card.classList.add('open', 'show');
-            
-        
-        // put the 'open' cards in an array
-        openCards.push(card);
-        
-        // console.log('Open Cards:', openCards.length)
-        
-        moveRating();
-
-        if (openCards.length == 2) {
-            //assign the first card in the array to a variable
-            var firstCardType = openCards[0].querySelector('i').classList.item(1);
-
-            //assign the second card in the array to a variable
-            var secondCardType = openCards[1].querySelector('i').classList.item(1);
-            
-            // check if cards match
-            if (firstCardType === secondCardType){
-                console.log(firstCardType);
-                console.log(secondCardType);
-                openCards.forEach(card => {
-                    card.classList.add('match');
-                    //push matched cards into an array
-                    matchedCards.push(card);
-                });
-            }
-            
-            setTimeout(() => {
-                openCards.forEach(card => {
-                    card.classList.remove('open', 'show'); //hide cards
-                });
-                openCards = [];
-            }, 1000);
-=======
             //add open show to classes to card
             card.classList.add('open', 'show');
                 
             // put the 'open' cards in an array
             openCards.push(card);
             // console.log('Open Cards:', openCards.length)
->>>>>>> 8219f0865c55c1c88a3615667777ac32c96a2425
             
-<<<<<<< HEAD
-            moveRating();
-
-            if (openCards.length == 2) {
-                //remove EventListener ?
-                // allCards.forEach(function (card){
-                //     card.removeEventListener('click', function(){});
-                // });
-
-                //assign the first card in the array to a variable
-                var firstCardType = openCards[0].querySelector('i').classList.item(1);
-
-                //assign the second card in the array to a variable
-                var secondCardType = openCards[1].querySelector('i').classList.item(1);
-                
-                // check if cards match
-                if (firstCardType === secondCardType){
-                    // console.log(firstCardType);
-                    // console.log(secondCardType);
-                    openCards.forEach(card => {
-                        card.classList.add('match');
-                        //push matched cards into an array
-                        matchedCards.push(card);
-                    });
-                }
-                
-                setTimeout(() => {
-                    openCards.forEach(card => {
-                        card.classList.remove('open', 'show'); //hide cards
-                    });
-                    openCards = [];
-                }, 1000);
-                
-                // clearTimeout(timer);
-||||||| merged common ancestors
-            // clearTimeout(timer);
-=======
             if (openCards.length == 2) {
                 //add a move to the move
                 moveRating();
@@ -271,7 +169,6 @@ allCards.forEach(function (card) { /* loop through stored cards */
                 }, 1000);
                 
                 // clearTimeout(timer);
->>>>>>> 8219f0865c55c1c88a3615667777ac32c96a2425
 
 
             }
