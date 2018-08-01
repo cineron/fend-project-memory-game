@@ -119,7 +119,7 @@ let matchedCards = [];
 
 allCards.forEach(function (card) { /* loop through stored cards */
     //add eventListener for cards
-    card.addEventListener('click', function (e) {
+    card.addEventListener('click', function () {
 
         // if cards Don't match - clear
         if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
