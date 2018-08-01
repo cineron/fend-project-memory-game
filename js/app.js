@@ -111,10 +111,10 @@ initGame();
 //store all the '.cards' in a variable
 let allCards = document.querySelectorAll('.card'); 
 
-//create an array to store "open" cards
+//create an empty array to store "open" cards
 let openCards = []; 
 
-//array for matched cards
+//empty array for matched cards
 let matchedCards = []; 
 
 allCards.forEach(function (card) { /* loop through stored cards */
@@ -132,7 +132,7 @@ allCards.forEach(function (card) { /* loop through stored cards */
             // console.log('Open Cards:', openCards.length)
             
             if (openCards.length == 2) {
-                //add a move to the move
+                //add 1 move to the move counter (after 2 cards are selected)
                 moveRating();
 
                 //assign the first card in the array to a variable
