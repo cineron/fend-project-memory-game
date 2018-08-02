@@ -119,69 +119,70 @@ let matchedCards = [];
 
 allCards.forEach(function (card) { /* loop through stored cards */
     //add eventListener for cards
-    card.addEventListener('click', function () {
-
+    card.addEventListener('click', matchingLogic);
+    
+    function matchingLogic() {
         // if cards Don't match - clear
         if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
 
-            //add open show to classes to card
+            //add "open" and "show" classes to card
             card.classList.add('open', 'show');
                 
             // put the 'open' cards in an array
             openCards.push(card);
             // console.log('Open Cards:', openCards.length)
-            
-            if (openCards.length == 2) {
-                //add 1 move to the move counter (after 2 cards are selected)
-                moveRating();
-
-                //assign the first card in the array to a variable
-                var firstCardType = openCards[0].querySelector('i').classList.item(1);
-
-                //assign the second card in the array to a variable
-                var secondCardType = openCards[1].querySelector('i').classList.item(1);
-                
-                // check if cards match
-                if (firstCardType === secondCardType){
-                    // console.log(firstCardType);
-                    // console.log(secondCardType);
-                    
-                    /*==> If the cards match, add ".match" class to html <==*/
-                    openCards.forEach(card => {
-                        card.classList.add('match');
-                        
-                        //push matched cards into an array
-                        matchedCards.push(card);
-                    });
-                }
-                
-                /*--- Prevent more than 2 cards from being flipped at a time --*/
-                //use a timer that lasts 1 second
-                setTimeout(() => {
-                    
-                    //remove the classes to flip the card.
-                    openCards.forEach(card => {
-                        card.classList.remove('open', 'show'); //hide cards
-                    });
-
-                    //empty the open card array
-                    openCards = [];
-                }, 1000);
-                
-                // clearTimeout(timer);
-
-
-            }
-
-            if (matchedCards.length === 16){
-                console.log("You win!");
-            }
-
         }
-    });
+            
+        if (openCards.length == 2) {
+            //add 1 move to the move counter (1 move equals selecting 2 cards)
+            moveRating();
+
+            //assign the first card in the array to a variable
+            var firstCardType = openCards[0].querySelector('i').classList.item(1);
+
+            //assign the second card in the array to a variable
+            var secondCardType = openCards[1].querySelector('i').classList.item(1);
+            
+            // check if cards match
+            if (firstCardType === secondCardType){
+                // console.log(firstCardType);
+                // console.log(secondCardType);
+                
+                /*==> If the cards match, add ".match" class to html <==*/
+                openCards.forEach(card => {
+                    card.classList.add('match');
+                    
+                    //push matched cards into an array
+                    matchedCards.push(card);
+                });
+            }
+            
+            /*--- Prevent more than 2 cards from being flipped at a time --*/
+            
+            //hide cards
+            card.classList.remove('open', 'show'); 
+            
+            //use a timer that lasts 1 second
+            // setTimeout(() => {                
+            //     
+            // }, 1000);            
+            // clearTimeout(timer);
+            
+            //remove the classes to flip the card.
+            openCards.forEach(card => {
+                card.classList.remove('open', 'show'); //hide cards
+            });
+
+            //empty the open card array
+            openCards = [];
+            card.removeEventListener('click', matchingLogic);
+        }
+        
+        //remove eventListener
+        
+
+    }
 });
-
-
 
 
 /*
