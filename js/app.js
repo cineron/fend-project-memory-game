@@ -130,58 +130,75 @@ allCards.forEach(function (card) { /* loop through stored cards */
                 
             // put the 'open' cards in an array
             openCards.push(card);
-            // console.log('Open Cards:', openCards.length)
-        }
+            console.log('openCards array length:', openCards.length);
             
-        if (openCards.length == 2) {
-            //add 1 move to the move counter (1 move equals selecting 2 cards)
-            moveRating();
+            if (openCards.length == 2) {
+                //add 1 move to the move counter (1 move equals selecting 2 cards)
+                moveRating();
 
-            //assign the first card in the array to a variable
-            var firstCardType = openCards[0].querySelector('i').classList.item(1);
-
-            //assign the second card in the array to a variable
-            var secondCardType = openCards[1].querySelector('i').classList.item(1);
-            
-            // check if cards match
-            if (firstCardType === secondCardType){
-                // console.log(firstCardType);
-                // console.log(secondCardType);
+                //use a timer that lasts 1 second
+                setTimeout(() => {   
+    
+                /*===Compare the 2 Cards===*/
+                //assign the first card in the array to a variable
+                var firstCardType = openCards[0].querySelector('i').classList.item(1);
+    
+                //assign the second card in the array to a variable
+                var secondCardType = openCards[1].querySelector('i').classList.item(1);
                 
-                /*==> If the cards match, add ".match" class to html <==*/
-                openCards.forEach(card => {
-                    card.classList.add('match');
+                // check if cards match
+                if (firstCardType === secondCardType){
+                    // console.log(firstCardType);
+                    // console.log(secondCardType);
                     
-                    //push matched cards into an array
-                    matchedCards.push(card);
-                });
-            }
-            
-            /*--- Prevent more than 2 cards from being flipped at a time --*/
-            
-            //hide cards
-            card.classList.remove('open', 'show'); 
-            
-            //use a timer that lasts 1 second
-            // setTimeout(() => {                
-            //     
-            // }, 1000);            
-            // clearTimeout(timer);
-            
-            //remove the classes to flip the card.
-            openCards.forEach(card => {
-                card.classList.remove('open', 'show'); //hide cards
-            });
+                    /*==> If the cards match, add ".match" class to html <==*/
+                    openCards.forEach(card => {
+                        console.log("2 cards match")
+                        card.classList.add('match');
+                        
+                        //push matched cards into an array
+                        matchedCards.push(card);
+                    });
+                }else
+                openCards.forEach(card => {
+                            card.classList.remove('open', 'show');
+                        });
 
-            //empty the open card array
-            openCards = [];
-            card.removeEventListener('click', matchingLogic);
+                }, 1000);
+
+                }
+                //empty the open card array
+                openCards = [];
+                console.log("how many openCards now?", openCards.length);
         }
+        
+            /*===END: Compare the 2 Cards===*/
+                        
+            //flip cards back over
+            
+            
+            
+            //     //remove the classes to flip the card.
+            //     openCards.forEach(card => {
+            //     card.classList.remove('open', 'show'); //hide cards
+            //     });    
+                        
+            // clearTimeout();
+            
+            
+
+            
+
+            
+        }
+
+        
         
         //remove eventListener
         
+        
 
-    }
+    
 });
 
 
