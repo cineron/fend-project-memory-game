@@ -120,6 +120,8 @@ let matchedCards = [];
 allCards.forEach(function (card) { /* loop through stored cards */
     //add eventListener for cards
     card.addEventListener('click', matchingLogic);
+
+    //TODO: see how to sync VS Code settings across different computers
     
     function matchingLogic() {
         // if cards Don't match - clear
@@ -130,14 +132,15 @@ allCards.forEach(function (card) { /* loop through stored cards */
                 
             // put the 'open' cards in an array
             openCards.push(card);
-            console.log('openCards array length:', openCards.length);
             
             if (openCards.length == 2) {
+                console.log('openCards array length:', openCards.length);
                 //add 1 move to the move counter (1 move equals selecting 2 cards)
                 moveRating();
 
                 //use a timer that lasts 1 second
                 setTimeout(() => {   
+                }, 1000);
     
                 /*===Compare the 2 Cards===*/
                 //assign the first card in the array to a variable
@@ -159,12 +162,12 @@ allCards.forEach(function (card) { /* loop through stored cards */
                         //push matched cards into an array
                         matchedCards.push(card);
                     });
-                }else
+                }else{
                 openCards.forEach(card => {
                             card.classList.remove('open', 'show');
                         });
+                    }
 
-                }, 1000);
 
                 }
                 //empty the open card array
@@ -174,10 +177,8 @@ allCards.forEach(function (card) { /* loop through stored cards */
         
             /*===END: Compare the 2 Cards===*/
                         
-            //flip cards back over
-            
-            
-            
+            //flip cards back over     
+           
             //     //remove the classes to flip the card.
             //     openCards.forEach(card => {
             //     card.classList.remove('open', 'show'); //hide cards
@@ -185,19 +186,11 @@ allCards.forEach(function (card) { /* loop through stored cards */
                         
             // clearTimeout();
             
-            
-
-            
-
-            
         }
 
         
         
         //remove eventListener
-        
-        
-
     
 });
 
