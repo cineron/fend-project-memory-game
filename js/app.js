@@ -1,5 +1,28 @@
 //@ts-check
 
+/*
+ * set up the event listener for a card. If a card is clicked:
+ *  - display the card's symbol (put this functionality in another function that you call from this one)
+ *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+ *  - if the list already has another card, check to see if the two cards match
+ *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+ *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+ *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+ *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+ */
+
+// ----- From Rubric -----
+
+// Game logic - random shuffle
+// Game login - Win: all cards match
+// Congratulations Popup - "time to win, star rating, and play again?"
+// Restart Button - resets board, timer, star rating
+// Star rating
+// Timer
+// Move Counter
+
+// CSS playable across all browsers, animations for click, match, and incorrect.
+// Code optimizations: keyboard shortcuts
 
 //TODO: see how to sync VS Code settings across different computers
 //This is a test: adding this line from old MBP
@@ -66,35 +89,6 @@ restartBtn.addEventListener("click", function(){
     initGame();
 });
 
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
-// ----- From Rubric -----
-
-// Game logic - random shuffle
-// Game login - Win: all cards match
-// Congratulations Popup - "time to win, star rating, and play again?"
-// Restart Button - resets board, timer, star rating
-// Star rating
-// Timer
-// Move Counter
-
-// CSS playable across all browsers, animations for click, match, and incorrect.
-// Code optimizations: keyboard shortcuts
-
-// -----Udacity Tips Videos ----//
-// tips from https://www.youtube.com/watch?v=oECVwum-7Zc - Ryan Waite
-// and  Mike Wales https://www.youtube.com/watch?v=_rUH-sEs68Y
-// ----------------------------//
 
 /*----- select all the cards -----*/
 
@@ -177,8 +171,12 @@ function matchingLogic() {
                         card.classList.remove('open', 'show');
                     });
             }
+            /*===END: Compare the 2 Cards===*/
 
-
+            //remove eventListener
+            deck.removeEventListener("click", matchingLogic);
+            
+            //empty the open card array
             openCards = [];
             console.log("how many openCards now?", openCards.length);
         }
@@ -186,23 +184,14 @@ function matchingLogic() {
         }
     }
 
-    //empty the open card array
-
-/*===END: Compare the 2 Cards===*/
-        
 //flip cards back over     
-
 //     //remove the classes to flip the card.
 //     openCards.forEach(card => {
 //     card.classList.remove('open', 'show'); //hide cards
 //     });    
-        
+
 // clearTimeout();
 
-
-
-
-//remove eventListener
 
 // initialize game
 function initGame() {
@@ -215,6 +204,12 @@ function initGame() {
 
 // call initGame
 initGame();
+
+
+// -----Udacity Tips Videos & Notes ----//
+// tips from https://www.youtube.com/watch?v=oECVwum-7Zc - Ryan Waite
+// and  Mike Wales https://www.youtube.com/watch?v=_rUH-sEs68Y
+// ----------------------------//
 
 /*
 
