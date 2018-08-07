@@ -1,31 +1,6 @@
 //@ts-check
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
 
-// ----- From Rubric -----
-
-// Game logic - random shuffle
-// Game login - Win: all cards match
-// Congratulations Popup - "time to win, star rating, and play again?"
-// Restart Button - resets board, timer, star rating
-// Star rating
-// Timer
-// Move Counter
-
-// CSS playable across all browsers, animations for click, match, and incorrect.
-// Code optimizations: keyboard shortcuts
-
-//TODO: see how to sync VS Code settings across different computers
-//This is a test: adding this line from old MBP
 /*
  * Create a list that holds all of your cards
  */
@@ -44,8 +19,14 @@ function generateCard(card) {
     return `<li class="card"><i class="fa ${card}"></i></li>`;
 }
 
-
 const deck = document.querySelector('.deck');
+
+/*
+ * Display the cards on the page
+ *   - shuffle the list of cards using the provided "shuffle" method below
+ *   - loop through each card and create its HTML
+ *   - add each card's HTML to the page
+ */
 function generateDeck() {
     let cardHTML = shuffle(cards).map(function(card) {
         return generateCard(card);
@@ -53,12 +34,6 @@ function generateDeck() {
     deck.innerHTML = cardHTML.join('');
     return deck.innerHTML;
 }
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -74,25 +49,33 @@ function shuffle(array) {
 
     return array;
 }
-let moveCounter = document.querySelector(".moves");
-let numberOfMoves = 0;
 
-function moveRating() {
-    numberOfMoves++;
-    moveCounter.innerText = numberOfMoves; //Q: why doesn't this have to include .toString() ?
-}
+/*
+ * set up the event listener for a card. If a card is clicked:
+ *  - display the card's symbol (put this functionality in another function that you call from this one)
+ *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+ *  - if the list already has another card, check to see if the two cards match
+ *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+ *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+ *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+ *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+ */
 
-// Restart Button
-// TODO: the cards will not flip after restarting
-let restartBtn = document.querySelector(".restart");
-restartBtn.addEventListener("click", function(){
-    initGame();
-});
+// ----- From Rubric -----
+// Game logic - random shuffle
+// Game login - Win: all cards match
+// Congratulations Popup - "time to win, star rating, and play again?"
+// Restart Button - resets board, timer, star rating
+// Star rating
+// Timer
+// Move Counter
+// CSS playable across all browsers, animations for click, match, and incorrect.
+// Code optimizations: keyboard shortcuts
+
+//TODO: see how to sync VS Code settings across different computers
+//This is a test: adding this line from old MBP
 
 
-/*----- select all the cards -----*/
-
-//TODO: Look at putting allCards into a function
 
 //store all the '.cards' in a variable
 let allCards = document.querySelectorAll('.card'); 
@@ -192,6 +175,20 @@ function matchingLogic() {
 
 // clearTimeout();
 
+let moveCounter = document.querySelector(".moves");
+let numberOfMoves = 0;
+
+function moveRating() {
+    numberOfMoves++;
+    moveCounter.innerText = numberOfMoves; //Q: why doesn't this have to include .toString() ?
+}
+
+// Restart Button
+// TODO: the cards will not flip after restarting
+let restartBtn = document.querySelector(".restart");
+restartBtn.addEventListener("click", function(){
+    initGame();
+});
 
 // initialize game
 function initGame() {
