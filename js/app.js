@@ -1,4 +1,7 @@
 //@ts-check
+
+
+//TODO: see how to sync VS Code settings across different computers
 //This is a test: adding this line from old MBP
 /*
  * Create a list that holds all of your cards
@@ -18,8 +21,9 @@ function generateCard(card) {
     return `<li class="card"><i class="fa ${card}"></i></li>`;
 }
 
+
+const deck = document.querySelector('.deck');
 function generateDeck() {
-    let deck = document.querySelector('.deck');
     let cardHTML = shuffle(cards).map(function(card) {
         return generateCard(card);
     });
@@ -117,24 +121,31 @@ let openCards = [];
 //empty array for matched cards
 let matchedCards = []; 
 
-allCards.forEach(function (card) { /* loop through stored cards */
-    //add eventListener for cards
-    card.addEventListener('click', matchingLogic);
+//add 1 eventListener to "deck" and target each card
+deck.addEventListener("click", matchingLogic);
 
-    //TODO: see how to sync VS Code settings across different computers
+// allCards.forEach(function (card) { 
+// });
+    //add eventListener for cards
+    //card.addEventListener('click', matchingLogic);
+
     
     function matchingLogic() {
-        // if cards Don't match - clear
-        if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
 
+        const clickedCard = event.target;
+
+        // if cards Don't match - clear
+        if (!clickedCard.classList.contains('open') && !clickedCard.classList.contains('show') && !clickedCard.classList.contains('match')) {
+
+            
             //add "open" and "show" classes to card
-            card.classList.add('open', 'show');
+            clickedCard.classList.add('open', 'show');
                 
             // put the 'open' cards in an array
-            openCards.push(card);
+            openCards.push(clickedCard);
+            console.log('openCards array length:', openCards.length);
             
             if (openCards.length == 2) {
-                console.log('openCards array length:', openCards.length);
                 //add 1 move to the move counter (1 move equals selecting 2 cards)
                 moveRating();
 
@@ -170,10 +181,11 @@ allCards.forEach(function (card) { /* loop through stored cards */
 
 
                 }
+            }
+        }
                 //empty the open card array
                 openCards = [];
                 console.log("how many openCards now?", openCards.length);
-        }
         
             /*===END: Compare the 2 Cards===*/
                         
@@ -186,13 +198,11 @@ allCards.forEach(function (card) { /* loop through stored cards */
                         
             // clearTimeout();
             
-        }
 
         
         
         //remove eventListener
     
-});
 
 
 /*
