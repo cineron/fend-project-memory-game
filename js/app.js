@@ -96,18 +96,6 @@ restartBtn.addEventListener("click", function(){
 // and  Mike Wales https://www.youtube.com/watch?v=_rUH-sEs68Y
 // ----------------------------//
 
-// initialize game
-function initGame() {
-    // generate and shuffle deck
-    generateDeck();
-    // reset timer
-    // reset stars
-    // reset moves counter
-}
-
-// call initGame
-initGame();
-
 /*----- select all the cards -----*/
 
 //TODO: Look at putting allCards into a function
@@ -129,81 +117,104 @@ deck.addEventListener("click", matchingLogic);
     //add eventListener for cards
     //card.addEventListener('click', matchingLogic);
 
+// function clearCards () {
+//     console.log("clearCards has been called.")
+//     openCards.forEach(card => {
+//         card.classList.remove('open', 'show');
+//         });
+//     }
     
-    function matchingLogic() {
+function matchingLogic() {
 
-        const clickedCard = event.target;
+    const clickedCard = event.target; //found this idea from: https://matthewcranford.com/memory-game-walkthrough-part-2-toggling-cards/
 
-        // if cards Don't match - clear
-        if (!clickedCard.classList.contains('open') && !clickedCard.classList.contains('show') && !clickedCard.classList.contains('match')) {
+    // only select cards that are *neither* open, show, nor match
+    if (!clickedCard.classList.contains('open') && !clickedCard.classList.contains('show') && !clickedCard.classList.contains('match')) {
+
+        
+        //add "open" and "show" classes to card
+        clickedCard.classList.add('open', 'show');
+            
+        // put the 'open' cards in an array
+        openCards.push(clickedCard);
+        console.log('openCards array length:', openCards.length);
+        
+        if (openCards.length == 2) {
+            //add 1 move to the move counter (1 move equals selecting 2 cards)
+            moveRating();
 
             
-            //add "open" and "show" classes to card
-            clickedCard.classList.add('open', 'show');
-                
-            // put the 'open' cards in an array
-            openCards.push(clickedCard);
-            console.log('openCards array length:', openCards.length);
+            /*===Compare the 2 Cards===*/
+            //assign the first card in the array to a variable
+            var firstCardType = openCards[0].querySelector('i').classList.item(1);
             
-            if (openCards.length == 2) {
-                //add 1 move to the move counter (1 move equals selecting 2 cards)
-                moveRating();
-
-                //use a timer that lasts 1 second
-                setTimeout(() => {   
-                }, 1000);
-    
-                /*===Compare the 2 Cards===*/
-                //assign the first card in the array to a variable
-                var firstCardType = openCards[0].querySelector('i').classList.item(1);
-    
-                //assign the second card in the array to a variable
-                var secondCardType = openCards[1].querySelector('i').classList.item(1);
+            //assign the second card in the array to a variable
+            var secondCardType = openCards[1].querySelector('i').classList.item(1);
+            
+            //use a timer that lasts 1 second
+            // check if cards match
+            if (firstCardType === secondCardType){
+                // console.log(firstCardType);
+                // console.log(secondCardType);
                 
-                // check if cards match
-                if (firstCardType === secondCardType){
-                    // console.log(firstCardType);
-                    // console.log(secondCardType);
-                    
-                    /*==> If the cards match, add ".match" class to html <==*/
-                    openCards.forEach(card => {
-                        console.log("2 cards match")
-                        card.classList.add('match');
-                        
-                        //push matched cards into an array
-                        matchedCards.push(card);
-                    });
-                }else{
+                /*==> If the cards match, add ".match" class to html <==*/
                 openCards.forEach(card => {
-                            card.classList.remove('open', 'show');
-                        });
-                    }
+                    card.classList.add('match');
+                    
+                    //push matched cards into an array
+                    matchedCards.push(card);
+                });
+                console.log(`2 cards match. matchedCards is ${matchedCards.length} long.`);
+            } else {
+                
+                setTimeout(() => {
+                    console.log("it's been a second.");
+                }, 1000);
 
 
-                }
+                    console.log(`openCards is  ${openCards.length} long.`);
+                    openCards.forEach(card => {
+                        card.classList.remove('open', 'show');
+                    });
             }
+
+
+            openCards = [];
+            console.log("how many openCards now?", openCards.length);
         }
-                //empty the open card array
-                openCards = [];
-                console.log("how many openCards now?", openCards.length);
-        
-            /*===END: Compare the 2 Cards===*/
-                        
-            //flip cards back over     
-           
-            //     //remove the classes to flip the card.
-            //     openCards.forEach(card => {
-            //     card.classList.remove('open', 'show'); //hide cards
-            //     });    
-                        
-            // clearTimeout();
             
+        }
+    }
 
-        
-        
-        //remove eventListener
-    
+    //empty the open card array
 
+/*===END: Compare the 2 Cards===*/
+        
+//flip cards back over     
+
+//     //remove the classes to flip the card.
+//     openCards.forEach(card => {
+//     card.classList.remove('open', 'show'); //hide cards
+//     });    
+        
+// clearTimeout();
+
+
+
+
+//remove eventListener
+
+// initialize game
+function initGame() {
+    // generate and shuffle deck
+    generateDeck();
+    // reset timer
+    // reset stars
+    // reset moves counter
+}
+
+// call initGame
+initGame();
 
 /*
 
