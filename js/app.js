@@ -89,6 +89,13 @@ let matchedCards = [];
 //add 1 eventListener to "deck" and target each card
 deck.addEventListener("click", matchingLogic);
 
+function clickLogic(clickedCard) {
+    return ((openCards.length < 2) && 
+    clickedCard.classList.contains('card') && 
+    !clickedCard.classList.contains('open') && 
+    !clickedCard.classList.contains('show') && 
+    !clickedCard.classList.contains('match'));
+}
 
 // allCards.forEach(function (card) { 
 // });
@@ -107,7 +114,7 @@ function matchingLogic() {
     const clickedCard = event.target; //found this idea from: https://matthewcranford.com/memory-game-walkthrough-part-2-toggling-cards/
 
     // only select cards that are *neither* open, show, nor match
-    if ((openCards.length < 2) && clickedCard.classList.contains('card') && !clickedCard.classList.contains('open') && !clickedCard.classList.contains('show') && !clickedCard.classList.contains('match')) {
+    if (clickLogic(clickedCard)) {
 
         
         //add "open" and "show" classes to card
