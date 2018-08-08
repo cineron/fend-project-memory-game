@@ -83,7 +83,13 @@ let allCards = document.querySelectorAll('.card');
 let openCards = []; 
 
 //empty array for matched cards
-let matchedCards = []; 
+let matchedCards = [];
+
+function winLogic() {
+    if (matchedCards.length === 16) {
+        window.alert(`You won in ${moves} moves!`);
+    }
+}
 
 //add 1 eventListener to "deck" and target each card
 deck.addEventListener("click", matchingLogic);
@@ -104,7 +110,7 @@ function hideCards () {
     }
 
 let moveCounter = document.querySelector(".moves");
-var moves = 0;
+let moves = 0;
 
 function numberOfMoves() {
     moves++;
@@ -117,8 +123,6 @@ function matchingLogic() {
 
     // only select cards that are *neither* open, show, nor match
     if (clickLogic(clickedCard)) {
-
-        
         //add "open" and "show" classes to card
         clickedCard.classList.add('open', 'show');
             
@@ -126,7 +130,7 @@ function matchingLogic() {
         openCards.push(clickedCard);
         console.log('openCards array length:', openCards.length);
         
-        if (openCards.length == 2) {
+        if (openCards.length === 2) {
             //add 1 move to the move counter (1 move equals selecting 2 cards)
             numberOfMoves();
             
@@ -153,15 +157,17 @@ function matchingLogic() {
                 console.log(`2 cards match. matchedCards is ${matchedCards.length} long.`);
             }
             
+            
             setTimeout(() => {
                 console.log("it's been a second.");
                 hideCards();
                 openCards = [];
                 console.log(`openCards is  ${openCards.length} long.`);
+                winLogic();
             }, 600);
-
+            
             /*===END: Compare the 2 Cards===*/
-
+            
             //remove eventListener
             //deck.removeEventListener("click", matchingLogic);
             
@@ -169,9 +175,8 @@ function matchingLogic() {
             // openCards = [];
             console.log("how many openCards now?", openCards.length);
         }
-            
-        }
-    }
+}
+}
 
 // Restart Button
 let restartBtn = document.querySelector(".restart");
