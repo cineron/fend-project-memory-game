@@ -1,5 +1,4 @@
-//@ts-check
-
+////@ts-check
 
 /*
  * Create a list that holds all of your cards
@@ -97,17 +96,20 @@ function clickLogic(clickedCard) {
     !clickedCard.classList.contains('match'));
 }
 
-// allCards.forEach(function (card) { 
-// });
-    //add eventListener for cards
-    //card.addEventListener('click', matchingLogic);
-
 function hideCards () {
-    console.log("clearCards has been called.")
+    console.log("clearCards has been called.");
     openCards.forEach(card => {
         card.classList.remove('open', 'show');
         });
     }
+
+let moveCounter = document.querySelector(".moves");
+var moves = 0;
+
+function numberOfMoves() {
+    moves++;
+    moveCounter.innerText = moves; //Q: why doesn't this have to include .toString() ?
+}
 
 function matchingLogic() {
 
@@ -126,8 +128,7 @@ function matchingLogic() {
         
         if (openCards.length == 2) {
             //add 1 move to the move counter (1 move equals selecting 2 cards)
-            moveRating();
-
+            numberOfMoves();
             
             /*===START: Compare the 2 Cards===*/
             //assign the first card in the array to a variable
@@ -151,13 +152,13 @@ function matchingLogic() {
                 });
                 console.log(`2 cards match. matchedCards is ${matchedCards.length} long.`);
             }
-                
-                setTimeout(() => {
-                    console.log("it's been a second.");
-                    hideCards();
-                    openCards = [];
-                    console.log(`openCards is  ${openCards.length} long.`);
-                }, 1000);
+            
+            setTimeout(() => {
+                console.log("it's been a second.");
+                hideCards();
+                openCards = [];
+                console.log(`openCards is  ${openCards.length} long.`);
+            }, 600);
 
             /*===END: Compare the 2 Cards===*/
 
@@ -172,24 +173,7 @@ function matchingLogic() {
         }
     }
 
-//flip cards back over     
-//     //remove the classes to flip the card.
-//     openCards.forEach(card => {
-//     card.classList.remove('open', 'show'); //hide cards
-//     });    
-
-// clearTimeout();
-
-let moveCounter = document.querySelector(".moves");
-let numberOfMoves = 0;
-
-function moveRating() {
-    numberOfMoves++;
-    moveCounter.innerText = numberOfMoves; //Q: why doesn't this have to include .toString() ?
-}
-
 // Restart Button
-// TODO: the cards will not flip after restarting
 let restartBtn = document.querySelector(".restart");
 restartBtn.addEventListener("click", function(){
     initGame();
