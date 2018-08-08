@@ -94,19 +94,19 @@ deck.addEventListener("click", matchingLogic);
     //add eventListener for cards
     //card.addEventListener('click', matchingLogic);
 
-// function clearCards () {
-//     console.log("clearCards has been called.")
-//     openCards.forEach(card => {
-//         card.classList.remove('open', 'show');
-//         });
-//     }
-    
+function hideCards () {
+    console.log("clearCards has been called.")
+    openCards.forEach(card => {
+        card.classList.remove('open', 'show');
+        });
+    }
+
 function matchingLogic() {
 
     const clickedCard = event.target; //found this idea from: https://matthewcranford.com/memory-game-walkthrough-part-2-toggling-cards/
 
     // only select cards that are *neither* open, show, nor match
-    if (!clickedCard.classList.contains('open') && !clickedCard.classList.contains('show') && !clickedCard.classList.contains('match')) {
+    if (clickedCard.classList.contains('card') && !clickedCard.classList.contains('open') && !clickedCard.classList.contains('show') && !clickedCard.classList.contains('match')) {
 
         
         //add "open" and "show" classes to card
@@ -121,7 +121,7 @@ function matchingLogic() {
             moveRating();
 
             
-            /*===Compare the 2 Cards===*/
+            /*===START: Compare the 2 Cards===*/
             //assign the first card in the array to a variable
             var firstCardType = openCards[0].querySelector('i').classList.item(1);
             
@@ -146,21 +146,20 @@ function matchingLogic() {
                 
                 setTimeout(() => {
                     console.log("it's been a second.");
+                    hideCards();
+                    openCards = [];
+                    console.log(`openCards is  ${openCards.length} long.`);
                 }, 1000);
 
 
-                    console.log(`openCards is  ${openCards.length} long.`);
-                    openCards.forEach(card => {
-                        card.classList.remove('open', 'show');
-                    });
-            }
-            /*===END: Compare the 2 Cards===*/
+                    
+            }/*===END: Compare the 2 Cards===*/
 
             //remove eventListener
-            deck.removeEventListener("click", matchingLogic);
+            //deck.removeEventListener("click", matchingLogic);
             
             //empty the open card array
-            openCards = [];
+            // openCards = [];
             console.log("how many openCards now?", openCards.length);
         }
             
@@ -208,26 +207,6 @@ initGame();
 // and  Mike Wales https://www.youtube.com/watch?v=_rUH-sEs68Y
 // ----------------------------//
 
-/*
-
-function createCard(className) {
-    var element = document.createElement(tagName[, options]);
-
-}
-
-function generateGameboard(params) {
-
-}
-
-function compareCards(cardA, cardB) {
-
-}
-
-function gameOver(params) {
-
-}
-
-*/
 /* =====
 var count = 5;
 function moveCounter(bool) {
@@ -236,15 +215,13 @@ function moveCounter(bool) {
     }
 
     else if (bool === false) {
-        count--
+        count--;
     }
 }
-//for console
-//
+
 // var stars = document.querySelectorAll('ul.stars li');
 // document.querySelector('ul.stars')
 // document.querySelector('ul.stars').removeChild(stars[0])
-
 
 function activeCards () {
     // addEvent Listner
