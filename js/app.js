@@ -54,7 +54,6 @@ function shuffle(array) {
 // Restart Button - resets board, timer, star rating
 // Star rating
 // Timer
-// Move Counter
 // CSS playable across all browsers, animations for click, match, and incorrect.
 // Code optimizations: keyboard shortcuts
 
@@ -105,6 +104,23 @@ function numberOfMoves() {
     moveCounter.innerText = moves; //Q: why doesn't this have to include .toString() ?
 }
 
+/* ===BEGIN:  Star Rating=== */
+let star = ".fa-star";
+
+function generateStar(star) {
+    return `<i class="fa fa-star"><i class="fa ${star}"></i></i>`;
+}
+
+let starCounter = document.querySelector(".stars");
+
+function generateStar(params) {
+    
+}
+
+function starRating() {
+    
+}
+/* ===END:  Star Rating=== */
 function matchingLogic() {
 
     const clickedCard = event.target; //found this idea from: https://matthewcranford.com/memory-game-walkthrough-part-2-toggling-cards/
