@@ -49,20 +49,7 @@ function shuffle(array) {
     return array;
 }
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
 // ----- From Rubric -----
-// Game logic - random shuffle
-// Game login - Win: all cards match
 // Congratulations Popup - "time to win, star rating, and play again?"
 // Restart Button - resets board, timer, star rating
 // Star rating
@@ -72,9 +59,6 @@ function shuffle(array) {
 // Code optimizations: keyboard shortcuts
 
 //TODO: see how to sync VS Code settings across different computers
-//This is a test: adding this line from old MBP
-
-
 
 //store all the '.cards' in a variable
 let allCards = document.querySelectorAll('.card'); 
@@ -88,12 +72,16 @@ let matchedCards = [];
 function winLogic() {
     if (matchedCards.length === 16) {
         window.alert(`You won in ${moves} moves!`);
+        matchedCards = [];
+        initGame();
     }
 }
 
-//add 1 eventListener to "deck" and target each card
+//add 1 eventListener to "deck" and target each card. Less CPU intensive than a listener per card.
 deck.addEventListener("click", matchingLogic);
 
+/* logic to control which cards are clicked. Placed in a function to keep the code neat. 
+Idea from: https://matthewcranford.com/memory-game-walkthrough-part-2-toggling-cards/ */
 function clickLogic(clickedCard) {
     return ((openCards.length < 2) && 
     clickedCard.classList.contains('card') && 
@@ -191,6 +179,8 @@ function initGame() {
     // reset timer
     // reset stars
     // reset moves counter
+    moves = -1;
+    numberOfMoves();
 }
 
 // call initGame
