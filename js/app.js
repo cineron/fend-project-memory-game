@@ -104,26 +104,41 @@ function numberOfMoves() {
     moveCounter.innerText = moves; //Q: why doesn't this have to include .toString() ?
 }
 
-/* ===BEGIN:  Star Rating=== */
-let star = ".fa-star";
+/* === === === BEGIN:  Star Rating === === === */
+//assign HTML star class to variable
+let stars = "fa-star";
 
-function createStarHTML(star) {
-    return `<li class="fa fa-star"><i class="fa ${star}"></i></li>`;
+//generate star HTML n times. // <- No. Having parameter in this function
+//doesn't have any effect ON THE NUMBER OF TIMES IT'S EXECUTED
+// b/c it isn't used in the function.
+function generateStarHTML(icon)  { 
+    return `<li><i class="fa ${icon}"></i></li>`;
 }
 
-const starCounter = document.querySelector(".stars");
+//hard code ".fa-star" for testing
+let starsHardCode = '<li><i class="fa fa-star"></i></li>';
 
-function generateStar() {
-    starCounter.innerHTML = createStarHTML(star);
-    return starCounter.innerHTML;  
+//select the stars by class in HTML
+const numberOfStars = document.querySelector(".stars");
+
+function generateStarCounter() {
+    // numberOfStars.innerHTML = generateStarHTML();
+    console.log('generateStarCounter called');
+    numberOfStars.innerHTML = starsHardCode;
+    console.log(`numberOfStars = ${numberOfStars}`);
+    return numberOfStars.innerHTML;  
 }
 
-function starRating(x) {
-    for (let i = 1; i <= x; i++){
-    generateStar(i);
+function createStars(nTimes) {
+    //place starsHardCore n times
+    for (let i = 1; i <= nTimes; i++){
+    // generateStarHTML(i);
+    generateStarCounter();
     }
 }
-/* ===END:  Star Rating=== */
+/* === === === END:  Star Rating === === === */
+
+
 function matchingLogic() {
 
     const clickedCard = event.target; //found this idea from: https://matthewcranford.com/memory-game-walkthrough-part-2-toggling-cards/
