@@ -124,7 +124,8 @@ const numberOfStars = document.querySelector(".stars");
 function generateStarCounter() {
     // numberOfStars.innerHTML = generateStarHTML();
     console.log('generateStarCounter called');
-    numberOfStars.innerHTML = starsHardCode;
+    // add to the variable
+    numberOfStars.innerHTML += starsHardCode;
     console.log(`numberOfStars = ${numberOfStars}`);
     return numberOfStars.innerHTML;  
 }
