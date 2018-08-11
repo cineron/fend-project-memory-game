@@ -107,18 +107,21 @@ function numberOfMoves() {
 /* ===BEGIN:  Star Rating=== */
 let star = ".fa-star";
 
-function generateStar(star) {
-    return `<i class="fa fa-star"><i class="fa ${star}"></i></i>`;
+function createStarHTML(star) {
+    return `<li class="fa fa-star"><i class="fa ${star}"></i></li>`;
 }
 
-let starCounter = document.querySelector(".stars");
+const starCounter = document.querySelector(".stars");
 
-function generateStar(params) {
-    
+function generateStar() {
+    starCounter.innerHTML = createStarHTML(star);
+    return starCounter.innerHTML;  
 }
 
-function starRating() {
-    
+function starRating(x) {
+    for (let i = 1; i <= x; i++){
+    generateStar(i);
+    }
 }
 /* ===END:  Star Rating=== */
 function matchingLogic() {
