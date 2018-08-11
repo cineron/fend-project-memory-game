@@ -104,7 +104,14 @@ function numberOfMoves() {
     moveCounter.innerText = moves; //Q: why doesn't this have to include .toString() ?
 }
 
-/* === === === BEGIN:  Star Rating === === === */
+/* === === === BEGIN: Star Rating === === === */
+// If moves <= 16 = 3 stars
+// If moves > 16 < 25 = 2 stars
+// If moves >= 25 = 1 star
+/* === === === END: Star Rating === === === */
+
+
+/* === === === BEGIN:  Star Creation === === === */
 //assign HTML star class to variable
 let stars = "fa-star";
 
@@ -151,7 +158,7 @@ function createStars(nTimes) {
     generateStarCounter();
     }
 }
-/* === === === END:  Star Rating === === === */
+/* === === === END:  Star Creation === === === */
 
 
 function matchingLogic() {
