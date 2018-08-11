@@ -227,6 +227,8 @@ function initGame() {
     generateDeck();
     // reset timer
     // reset stars
+    createStars();
+    // console.log("createStars() called from initGame()");
     // reset moves counter
     moves = -1;
     numberOfMoves();
