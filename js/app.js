@@ -143,6 +143,8 @@ function generateStarCounter() {
 //Where do I put it ^ ? // early in generateStarsCounter?
 
 function createStars(nTimes) {
+    //clear the stars
+    numberOfStars.innerHTML = '';
     //place starsHardCore n times
     for (let i = 1; i <= nTimes; i++){
     // generateStarHTML(i);
