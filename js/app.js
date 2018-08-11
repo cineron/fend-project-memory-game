@@ -122,13 +122,25 @@ let starsHardCode = '<li><i class="fa fa-star"></i></li>';
 const numberOfStars = document.querySelector(".stars");
 
 function generateStarCounter() {
-    // numberOfStars.innerHTML = generateStarHTML();
     console.log('generateStarCounter called');
+    // 'clear' the stars
+    // numberOfStars.innerHTML = '';
+    // console.log(`numberOfStars (after = '') = ${numberOfStars.getElementsByTagName("li").length}`);
+    // NO - clearing stars here, will AWLWAYS clear stars, meanging
+    // there "can be only one."
+
     // add to the variable
-    numberOfStars.innerHTML += starsHardCode;
-    console.log(`numberOfStars = ${numberOfStars}`);
+    // numberOfStars.innerHTML += starsHardCode;
+    numberOfStars.innerHTML += generateStarHTML(stars);
+    console.log(`numberOfStars (after +=) = ${numberOfStars.getElementsByTagName("li").length}`);
+    
     return numberOfStars.innerHTML;  
 }
+
+//¿ How do I clear the <li>'s in the .stars <ul>?
+//set the innerHTML = '' //empty string
+//numberOfStars.innerHTML = '';
+//Where do I put it ^ ? // early in generateStarsCounter?
 
 function createStars(nTimes) {
     //place starsHardCore n times
