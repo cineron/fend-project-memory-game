@@ -104,13 +104,6 @@ function numberOfMoves() {
     moveCounter.innerText = moves; //Q: why doesn't this have to include .toString() ?
 }
 
-/* === === === BEGIN: Star Rating === === === */
-// If moves <= 16 = 3 stars
-// If moves > 16 < 25 = 2 stars
-// If moves >= 25 = 1 star
-/* === === === END: Star Rating === === === */
-
-
 /* === === === BEGIN:  Star Creation === === === */
 //assign HTML star class to variable
 let stars = "fa-star";
@@ -160,6 +153,36 @@ function createStars(nTimes) {
 }
 /* === === === END:  Star Creation === === === */
 
+/* === === === BEGIN: Star Rating === === === */
+
+function starRating() {
+    
+    // 5 stars -- added later
+    if (moves <= 11) {
+        createStars(5);
+    }
+    // 4 stars -- added later
+    else if (moves >= 12 && moves <= 15) {
+        createStars(4);
+    }
+    
+    // If moves <= 16 = 3 stars
+    else if (moves <= 16) {
+        createStars(3);
+    }
+    
+    // If moves > 16 < 25 = 2 stars
+    else if (moves > 16 && moves < 25) {
+        createStars(2);
+    
+    // If moves >= 25 = 1 star
+    } else {
+        createStars(1);
+    }
+}
+/* === === === END: Star Rating === === === */
+
+
 
 function matchingLogic() {
 
@@ -177,6 +200,9 @@ function matchingLogic() {
         if (openCards.length === 2) {
             //add 1 move to the move counter (1 move equals selecting 2 cards)
             numberOfMoves();
+
+            // add a star rating
+            starRating();
             
             /*===START: Compare the 2 Cards===*/
             //assign the first card in the array to a variable
