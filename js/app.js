@@ -70,7 +70,9 @@ let matchedCards = [];
 
 function winLogic() {
     if (matchedCards.length === 16) {
-        window.alert(`You won in ${moves} moves!`);
+        window.alert(`You won in ${moves} moves! \n
+        You got ${howManyStars} stars! \n
+        And it took you n minutes!`);
         matchedCards = [];
         initGame();
     }
@@ -142,12 +144,17 @@ function generateStarCounter() {
 //numberOfStars.innerHTML = '';
 //Where do I put it ^ ? // early in generateStarsCounter?
 
+let howManyStars = 0;
+
 function createStars(nTimes) {
     //clear the stars
     numberOfStars.innerHTML = '';
+
+    howManyStars = nTimes;
+
     //place starsHardCore n times
     for (let i = 1; i <= nTimes; i++){
-    // generateStarHTML(i);
+    // generateStarHTML(i); //NO b/c function has not parameters
     generateStarCounter();
     }
 }
