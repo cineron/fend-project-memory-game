@@ -59,6 +59,37 @@ function shuffle(array) {
 
 //TODO: see how to sync VS Code settings across different computers
 
+/* === === === START: Timer === === === */
+//use setInterval and clearInterval
+
+// starting and stopping timer
+let time = 0;
+let timer = 0;
+// var timer =  setInterval(function () {
+//     time++;
+//     console.log(time);
+// }, 1000);
+
+function setTimer() {
+    //assign setInterval to a variable so that it can easily be called by clearInterval()
+    timer = setInterval(function () {
+    time++;
+    // if
+    console.log(time);
+}, 1000);
+}
+// console.log(`This is the timer: ${timer}`);
+function clearTimer() {
+    clearInterval(timer); //var of timer);
+    time = 0;
+}
+
+
+// timer starts when first card is clicked
+//var initialClick = false; // set to true when first card clicke and start timer
+
+/* === === === END: Timer === === === */
+
 //store all the '.cards' in a variable
 let allCards = document.querySelectorAll('.card'); 
 
@@ -68,11 +99,18 @@ let openCards = [];
 //empty array for matched cards
 let matchedCards = [];
 
+let pluralStar = '';
+
 function winLogic() {
+    if (howManyStars === 1){
+        pluralStar = "star"
+    } else {
+        pluralStar = "stars"
+    }
     if (matchedCards.length === 16) {
         window.alert(`You won in ${moves} moves! \n
-        You got ${howManyStars} stars! \n
-        And it took you n minutes!`);
+        You got ${howManyStars} ${pluralStar}! \n
+        And you did it in ${time} seconds!`);
         matchedCards = [];
         initGame();
     }
@@ -193,6 +231,11 @@ function starRating() {
 
 function matchingLogic() {
 
+    //start timer
+    if (timer === 0){
+        setTimer();
+    }
+
     const clickedCard = event.target; //found this idea from: https://matthewcranford.com/memory-game-walkthrough-part-2-toggling-cards/
 
     // only select cards that are *neither* open, show, nor match
@@ -266,6 +309,7 @@ function initGame() {
     // generate and shuffle deck
     generateDeck();
     // reset timer
+    clearTimer();
     // reset stars
     createStars();
     // console.log("createStars() called from initGame()");
@@ -335,38 +379,7 @@ var cards = document.querySelectorAll('ul.deck li')
 shuffle(Array.from(cards)
 // clear the ul and append it back to the shuffle above
 
-// creating Timer
-use setInterval and clearInterval
-
-// starting and stopping timer
-var time = 0;
-var timer =  setInterval(function () {
-    time++;
-    console.log(time);
-}, 1000);
-
-function setTimer() {
-    timer = setInterval(function () {
-    time++;
-    console.log(time);
-}, 1000);
-}
-
-function clearTimer() {
-    clearInterval(timer //var of timer);
-}
-
-// timer button
-resetBtn.addEventListener('click', function() {
-    clearTimer();
-    function setTimer();
-})
-
-===== */
-
-// timer starts when first card is clicked
-//var initialClick = false; // set to true when first card clicke and start timer
-
 // ORGANIZING
 // put functions at top and functions towards bottom
 
+*/
