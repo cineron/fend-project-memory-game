@@ -97,11 +97,24 @@ h1 {
     display: inline-block;
     margin: 0 5px 0 0;
 }
-
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
 }
+
+.score-panel #clock {
+    /* margin-left: 3em; */
+    /* padding-left: 4em; */
+    list-style: none;
+    display: inline-block;
+}
+
+.score-panel .moves {
+    /* margin-left: 1em; */
+    list-style: none;
+    display: inline-block;
+}
+
 
 .score-panel .restart {
     float: right;

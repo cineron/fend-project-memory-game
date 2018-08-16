@@ -62,26 +62,39 @@ function shuffle(array) {
 //TODO: see how to sync VS Code settings across different computers
 
 /* === === === START: Timer === === === */
-//use setInterval and clearInterval
-
-// starting and stopping timer
+// declare variable to hold time
 let time = 0;
-let timer;
-// var timer =  setInterval(function () {
-//     time++;
-//     console.log(time);
-// }, 1000);
 
+// declare variable for setInterval
+let timer;
+
+//declare variable to hold HTML for the timer 
+let clock = document.getElementById("clock");
+
+//declare variable to toggle clock start/stop
+let clockStart = false;
+
+// starting and stopping timer. use setInterval and clearInterval
 function setTimer() {
     //assign setInterval to a variable so that it can easily be called by clearInterval()
     console.log("setTimer() called.");
     timer = setInterval(countSeconds, 1000);
     console.log(`timer = setInterval(calling countSeconds()) withing setTimer() called. \n
-        timer = ${timer}`);
+    timer = ${timer}`);
 }
+
+//declare vars for min and sec
+let min = Math.floor(time/60);
+let sec = Math.floor(time%60);
 
 function countSeconds() {
     time++;
+    if (time < 10){
+        clock.innerText = `${min}:0${sec}`;
+    } else {
+        clock.innerText = `${min}:${sec}`;
+    }
+    // clock.innerText = time;
     console.log(`countSeconds() called itterating 'time.' time = ${time}`); 
 }
 // console.log(`This is the timer: ${timer}`);
@@ -93,7 +106,6 @@ function stopTimer() {
     time = 0;
     console.log("time= 0")
 }
-
 
 // timer starts when first card is clicked
 //var initialClick = false; // set to true when first card clicke and start timer
@@ -242,14 +254,17 @@ function starRating() {
 function matchingLogic() {
 
     //start timer
+    if (!clockStart){
         setTimer();
+    }
+
     const clickedCard = event.target; //found this idea from: https://matthewcranford.com/memory-game-walkthrough-part-2-toggling-cards/
 
     // only select cards that are *neither* open, show, nor match
     if (clickLogic(clickedCard)) {
         //add "open" and "show" classes to card
         clickedCard.classList.add('open', 'show');
-            
+        
         // put the 'open' cards in an array
         openCards.push(clickedCard);
         console.log('openCards array length:', openCards.length);
