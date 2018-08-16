@@ -253,7 +253,7 @@ function starRating() {
 function matchingLogic() {
 
     //start timer
-    if (clockRunning){
+    if (!clockRunning){
         setTimer();
     }
 
