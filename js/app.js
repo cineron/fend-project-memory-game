@@ -78,12 +78,12 @@ let clockRunning = false;
 // starting and stopping timer. use setInterval and clearInterval
 function setTimer() {
     //assign setInterval to a variable so that it can easily be called by clearInterval()
-    console.log("setTimer() called.");
+    // console.log("setTimer() called.");
     timer = setInterval(countSeconds, 1000);
 }
 
 function countSeconds() {
-    time++;
+    time ++;
     //declare vars for min and sec
     let min = Math.floor(time/60);
     let sec = Math.floor(time%60);
@@ -97,17 +97,18 @@ function countSeconds() {
         // console.log(`${min}:${sec}`);
     }
     // clock.innerText = time;
-    console.log(`countSeconds() called. time = ${time}`); 
+    // console.log(`countSeconds() called. time = ${time}`); 
 }
 // console.log(`This is the timer: ${timer}`);
 function stopTimer() {
-    console.log("stopTimer() called.");
+    // console.log("stopTimer() called.");
     clearInterval(timer); //var of timer);
+    clock.innerHTML = "0:00";
     clockRunning = false;
     timer = 0;
-    console.log(`timer = ${timer}`)
+    // console.log(`timer = ${timer}`);
     time = 0;
-    console.log("time= 0")
+    // console.log("time= 0");
 }
 
 // timer starts when first card is clicked
@@ -124,21 +125,63 @@ let openCards = [];
 //empty array for matched cards
 let matchedCards = [];
 
+/* === === === START: Win Logic === === === */
+
 let pluralStar = '';
 
 function winLogic() {
     if (howManyStars === 1){
-        pluralStar = "star"
+        pluralStar = "star";
     } else {
-        pluralStar = "stars"
+        pluralStar = "stars";
     }
     if (matchedCards.length === 16) {
-        window.alert(`You won in ${moves} moves! \n
-        You got ${howManyStars} ${pluralStar}! \n
-        And you did it in ${time} seconds!`);
+        // window.alert(`You won in ${moves} moves! \n
+        // You got ${howManyStars} ${pluralStar}! \n
+        // And you did it in ${time} seconds!`);
+
+        //modal window, which was *not* covered in content before this project.        
+        modal.style.display = "block";
+        modalBody.innerHTML= `<p>You won in <strong>${moves}</strong> moves!</p>
+        <p>You got <strong>${howManyStars} ${pluralStar}</strong>!</p>
+        <p>And you did it in <strong>${time}</strong> seconds!</p>`;
+        console.log("winLogic called");
+    
         initGame();
     }
 }
+
+/*  Modal content 
+    from https://www.w3schools.com/howto/howto_css_modals.asp 
+    "Modals" were *not* covered in the content before this project.*/
+// Get the modal
+let modal = document.getElementById('myModal');
+
+// Get the modal-body
+let modalBody = modal.querySelector(".modal-body");
+
+// Get the <span> element that closes the modal
+let span = document.getElementsByClassName("close")[0];
+
+
+// When the user clicks on the button, open the modal 
+// btn.onclick = function() {
+//     modal.style.display = "block";
+// }
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
+/* === === === END: Win Logic === === === */
+
 
 //add 1 eventListener to "deck" and target each card. Less CPU intensive than a listener per card.
 deck.addEventListener("click", matchingLogic);
@@ -164,7 +207,7 @@ let moveCounter = document.querySelector(".moves");
 let moves;
 
 function numberOfMoves(n) {
-    console.log("numberOfMoves called")
+    // console.log("numberOfMoves called");
     moves += n;
     moveCounter.innerText = moves; //Q: why doesn't this have to include .toString() ?
 }
@@ -272,7 +315,7 @@ function matchingLogic() {
         
         // put the 'open' cards in an array
         openCards.push(clickedCard);
-        console.log('openCards array length:', openCards.length);
+        // console.log('openCards array length:', openCards.length);
         
         if (openCards.length === 2) {
             //add 1 move to the move counter (1 move equals selecting 2 cards)
@@ -301,15 +344,15 @@ function matchingLogic() {
                     //push matched cards into an array
                     matchedCards.push(card);
                 });
-                console.log(`2 cards match. matchedCards is ${matchedCards.length} long.`);
+                // console.log(`2 cards match. matchedCards is ${matchedCards.length} long.`);
             }
             
             
             setTimeout(() => {
-                console.log("it's been a second.");
+                // console.log("it's been a second.");
                 hideCards();
                 openCards = [];
-                console.log(`openCards is  ${openCards.length} long.`);
+                // console.log(`openCards is  ${openCards.length} long.`);
                 winLogic();
             }, 600);
             
@@ -320,7 +363,7 @@ function matchingLogic() {
             
             //empty the open card array
             // openCards = [];
-            console.log("how many openCards now?", openCards.length);
+            // console.log("how many openCards now?", openCards.length);
         }
 }
 }
