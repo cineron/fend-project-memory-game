@@ -65,6 +65,7 @@ function shuffle(array) {
 // declare variable to hold time
 let time = 0;
 
+
 // declare variable for setInterval
 let timer;
 
@@ -81,16 +82,19 @@ function setTimer() {
     timer = setInterval(countSeconds, 1000);
 }
 
-//declare vars for min and sec
-let min = Math.floor(time/60);
-let sec = Math.floor(time%60);
-
 function countSeconds() {
     time++;
-    if (time < 10){
-        clock.innerText = `${min}:0${sec}`;
+    //declare vars for min and sec
+    let min = Math.floor(time/60);
+    let sec = Math.floor(time%60);
+    
+    //add leading 0 on seconds.
+    if (sec < 10){
+        clock.innerHTML = `${min}:0${sec}`;
+        // console.log(`${min}:0${sec}`);
     } else {
-        clock.innerText = `${min}:${sec}`;
+        clock.innerHTML = `${min}:${sec}`;
+        // console.log(`${min}:${sec}`);
     }
     // clock.innerText = time;
     console.log(`countSeconds() called. time = ${time}`); 
@@ -99,6 +103,8 @@ function countSeconds() {
 function stopTimer() {
     console.log("stopTimer() called.");
     clearInterval(timer); //var of timer);
+    clockRunning = false;
+    timer = 0;
     console.log(`timer = ${timer}`)
     time = 0;
     console.log("time= 0")
@@ -127,11 +133,9 @@ function winLogic() {
         pluralStar = "stars"
     }
     if (matchedCards.length === 16) {
-        clockRunning = false;
         window.alert(`You won in ${moves} moves! \n
         You got ${howManyStars} ${pluralStar}! \n
         And you did it in ${time} seconds!`);
-        matchedCards = [];
         initGame();
     }
 }
@@ -157,10 +161,11 @@ function hideCards () {
     }
 
 let moveCounter = document.querySelector(".moves");
-let moves = 0;
+let moves;
 
-function numberOfMoves() {
-    moves++;
+function numberOfMoves(n) {
+    console.log("numberOfMoves called")
+    moves += n;
     moveCounter.innerText = moves; //Q: why doesn't this have to include .toString() ?
 }
 
@@ -255,6 +260,7 @@ function matchingLogic() {
     //start timer
     if (!clockRunning){
         setTimer();
+        clockRunning = true;
     }
 
     const clickedCard = event.target; //found this idea from: https://matthewcranford.com/memory-game-walkthrough-part-2-toggling-cards/
@@ -270,7 +276,7 @@ function matchingLogic() {
         
         if (openCards.length === 2) {
             //add 1 move to the move counter (1 move equals selecting 2 cards)
-            numberOfMoves();
+            numberOfMoves(1);
 
             // add a star rating
             starRating();
@@ -327,6 +333,8 @@ restartBtn.addEventListener("click", function(){
 
 // initialize game
 function initGame() {
+    //clear matched cards
+    matchedCards = [];
     // generate and shuffle deck
     generateDeck();
     // reset timer
@@ -335,8 +343,8 @@ function initGame() {
     createStars();
     // console.log("createStars() called from initGame()");
     // reset moves counter
-    moves = -1;
-    numberOfMoves();
+    moves = 0;
+    numberOfMoves(0);
 }
 
 // call initGame
@@ -347,60 +355,3 @@ initGame();
 // tips from https://www.youtube.com/watch?v=oECVwum-7Zc - Ryan Waite
 // and  Mike Wales https://www.youtube.com/watch?v=_rUH-sEs68Y
 // ----------------------------//
-
-/* =====
-var count = 5;
-function moveCounter(bool) {
-    if (bool === true) {
-        count++;
-    }
-
-    else if (bool === false) {
-        count--;
-    }
-}
-
-// var stars = document.querySelectorAll('ul.stars li');
-// document.querySelector('ul.stars')
-// document.querySelector('ul.stars').removeChild(stars[0])
-
-function activeCards () {
-    // addEvent Listner
-    // element.addEventListener('click')
-    document.queryCommandEnabled('li.card').forEach(function(card){
-        card.addEventListener('click', function(){
-            if (lastFlipped) {
-                console.log(lastFlipped, card);
-            }
-
-            else {
-                lastFlipped = card;
-            }
-        });
-    });
-}
-
-function deactivateCards () {
-    // remove event listners
-}
-
-var matchedCards = [];
-
-if (matchedCards.length === 16) {
-    // logic for game is won
-}
-
-// How to prevent same card from being clicked
-var lastFlipped = null;
-
-// How to shuffle and reset
-// collect cards
-var cards = document.querySelectorAll('ul.deck li')
-// put them into a new array
-shuffle(Array.from(cards)
-// clear the ul and append it back to the shuffle above
-
-// ORGANIZING
-// put functions at top and functions towards bottom
-
-*/
