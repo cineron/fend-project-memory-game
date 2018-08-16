@@ -79,8 +79,6 @@ function setTimer() {
     //assign setInterval to a variable so that it can easily be called by clearInterval()
     console.log("setTimer() called.");
     timer = setInterval(countSeconds, 1000);
-    console.log(`timer = setInterval(calling countSeconds()) withing setTimer() called. \n
-    timer = ${timer}`);
 }
 
 //declare vars for min and sec
@@ -95,13 +93,12 @@ function countSeconds() {
         clock.innerText = `${min}:${sec}`;
     }
     // clock.innerText = time;
-    console.log(`countSeconds() called itterating 'time.' time = ${time}`); 
+    console.log(`countSeconds() called. time = ${time}`); 
 }
 // console.log(`This is the timer: ${timer}`);
 function stopTimer() {
     console.log("stopTimer() called.");
     clearInterval(timer); //var of timer);
-    console.log("¿¿¿clearInterval(timer) called???");
     console.log(`timer = ${timer}`)
     time = 0;
     console.log("time= 0")
@@ -130,6 +127,7 @@ function winLogic() {
         pluralStar = "stars"
     }
     if (matchedCards.length === 16) {
+        clockStart = false;
         window.alert(`You won in ${moves} moves! \n
         You got ${howManyStars} ${pluralStar}! \n
         And you did it in ${time} seconds!`);
@@ -152,7 +150,7 @@ function clickLogic(clickedCard) {
 }
 
 function hideCards () {
-    console.log("clearCards has been called.");
+    // console.log("clearCards has been called.");
     openCards.forEach(card => {
         card.classList.remove('open', 'show');
         });
@@ -184,7 +182,8 @@ let starsHardCode = '<li><i class="fa fa-star"></i></li>';
 const numberOfStars = document.querySelector(".stars");
 
 function generateStarCounter() {
-    console.log('generateStarCounter called');
+    // console.log('generateStarCounter called');
+    
     // 'clear' the stars
     // numberOfStars.innerHTML = '';
     // console.log(`numberOfStars (after = '') = ${numberOfStars.getElementsByTagName("li").length}`);
@@ -194,7 +193,7 @@ function generateStarCounter() {
     // add to the variable
     // numberOfStars.innerHTML += starsHardCode;
     numberOfStars.innerHTML += generateStarHTML(stars);
-    console.log(`numberOfStars (after +=) = ${numberOfStars.getElementsByTagName("li").length}`);
+    // console.log(`numberOfStars (after +=) = ${numberOfStars.getElementsByTagName("li").length}`);
     
     return numberOfStars.innerHTML;  
 }
