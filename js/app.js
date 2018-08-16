@@ -31,6 +31,8 @@ function generateDeck() {
         return generateCard(card);
     });
     deck.innerHTML = cardHTML.join('');
+    //clear openCards just in case only 1 card has been clicked.
+    openCards = [];
     return deck.innerHTML;
 }
 
@@ -64,7 +66,7 @@ function shuffle(array) {
 
 // starting and stopping timer
 let time = 0;
-let timer = 0;
+let timer;
 // var timer =  setInterval(function () {
 //     time++;
 //     console.log(time);
@@ -72,16 +74,24 @@ let timer = 0;
 
 function setTimer() {
     //assign setInterval to a variable so that it can easily be called by clearInterval()
-    timer = setInterval(function () {
+    console.log("setTimer() called.");
+    timer = setInterval(countSeconds, 1000);
+    console.log(`timer = setInterval(calling countSeconds()) withing setTimer() called. \n
+        timer = ${timer}`);
+}
+
+function countSeconds() {
     time++;
-    // if
-    console.log(time);
-}, 1000);
+    console.log(`countSeconds() called itterating 'time.' time = ${time}`); 
 }
 // console.log(`This is the timer: ${timer}`);
-function clearTimer() {
+function stopTimer() {
+    console.log("stopTimer() called.");
     clearInterval(timer); //var of timer);
+    console.log("¿¿¿clearInterval(timer) called???");
+    console.log(`timer = ${timer}`)
     time = 0;
+    console.log("time= 0")
 }
 
 
@@ -232,10 +242,7 @@ function starRating() {
 function matchingLogic() {
 
     //start timer
-    if (timer === 0){
         setTimer();
-    }
-
     const clickedCard = event.target; //found this idea from: https://matthewcranford.com/memory-game-walkthrough-part-2-toggling-cards/
 
     // only select cards that are *neither* open, show, nor match
@@ -309,7 +316,7 @@ function initGame() {
     // generate and shuffle deck
     generateDeck();
     // reset timer
-    clearTimer();
+    stopTimer();
     // reset stars
     createStars();
     // console.log("createStars() called from initGame()");
