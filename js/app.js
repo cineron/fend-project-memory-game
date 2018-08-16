@@ -145,9 +145,9 @@ function winLogic() {
         modalBody.innerHTML= `<p>You won in <strong>${moves}</strong> moves!</p>
         <p>You got <strong>${howManyStars} ${pluralStar}</strong>!</p>
         <p>And you did it in <strong>${time}</strong> seconds!</p>`;
-        console.log("winLogic called");
+        // console.log("winLogic called");
     
-        initGame();
+        // initGame();
     }
 }
 
@@ -163,11 +163,14 @@ let modalBody = modal.querySelector(".modal-body");
 // Get the <span> element that closes the modal
 let span = document.getElementsByClassName("close")[0];
 
+// Get the restart button
+let btn = document.getElementById("myBtn");
 
-// When the user clicks on the button, open the modal 
-// btn.onclick = function() {
-//     modal.style.display = "block";
-// }
+// When the user clicks on the button, restart game 
+btn.onclick = function() {
+    modal.style.display = "none";
+    initGame();
+}
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {

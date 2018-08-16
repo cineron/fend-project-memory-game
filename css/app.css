@@ -175,6 +175,19 @@ from https://www.w3schools.com/howto/howto_css_modals.asp
     font-weight: bold;
 }
 
+#myBtn {
+    background-color:  #02ccba;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
 .close:hover,
 .close:focus {
     color: #000;
