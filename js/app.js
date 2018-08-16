@@ -72,7 +72,7 @@ let timer;
 let clock = document.getElementById("clock");
 
 //declare variable to toggle clock start/stop
-let clockStart = false;
+let clockRunning = false;
 
 // starting and stopping timer. use setInterval and clearInterval
 function setTimer() {
@@ -127,7 +127,7 @@ function winLogic() {
         pluralStar = "stars"
     }
     if (matchedCards.length === 16) {
-        clockStart = false;
+        clockRunning = false;
         window.alert(`You won in ${moves} moves! \n
         You got ${howManyStars} ${pluralStar}! \n
         And you did it in ${time} seconds!`);
@@ -253,7 +253,7 @@ function starRating() {
 function matchingLogic() {
 
     //start timer
-    if (!clockStart){
+    if (clockRunning){
         setTimer();
     }
 
