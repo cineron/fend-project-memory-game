@@ -7,14 +7,19 @@
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+This is the completed Memory Game forked from Udacity's [Memory Game](https://github.com/udacity/fend-project-memory-game) starter project for their Front End Nano Degree.
 
-To get started, open `js/app.js` and start building out the app's functionality
+To play the game, load index.html into your browser of choice.
+Once loaded, notice that there are 8 pairs of matching cards.
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+Start the game by clicking on a card. Select any other card to see if it is a match.
+
+Continue selecting pairs of cards until all cards are matched.
+
+A window will pop up with your game stats.
 
 ## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+This is a personal respository. Feel free to submit pull requests.
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
