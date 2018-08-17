@@ -7,7 +7,7 @@
 * [Contributing](#contributing)
 
 ## Dependencies
-This code requires [Boostrap](https://getbootstrap.com/) and [Google Fonts](https://fonts.google.com/).
+This code requires [Bootstrap](https://getbootstrap.com/) and [Google Fonts](https://fonts.google.com/).
 
 
 ## Instructions
