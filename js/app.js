@@ -103,7 +103,7 @@ function countSeconds() {
 function stopTimer() {
     // console.log("stopTimer() called.");
     clearInterval(timer); //var of timer);
-    clock.innerHTML = "0:00";
+    // clock.innerHTML = "0:00";
     clockRunning = false;
     timer = 0;
     // console.log(`timer = ${timer}`);
@@ -146,7 +146,9 @@ function winLogic() {
         <p>You got <strong>${howManyStars} ${pluralStar}</strong>!</p>
         <p>And you did it in <strong>${time}</strong> seconds!</p>`;
         // console.log("winLogic called");
-    
+        
+        // Stop the timer
+        stopTimer();
         // initGame();
     }
 }
@@ -385,6 +387,7 @@ function initGame() {
     generateDeck();
     // reset timer
     stopTimer();
+    clock.innerHTML = "0:00";
     // reset stars
     createStars();
     // console.log("createStars() called from initGame()");
