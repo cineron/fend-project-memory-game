@@ -370,7 +370,7 @@ function matchingLogic() {
             // openCards = [];
             // console.log("how many openCards now?", openCards.length);
         }
-}
+    }
 }
 
 // Restart Button
