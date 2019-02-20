@@ -1,4 +1,5 @@
 # Memory Game Project
+This is a clone of a classic arcade game created as part of the Udacity.com Nanodegree program. It can be played [live on Netlify](https://udacity-arcade-game-cineron.netlify.com/).
 
 ## Table of Contents
 
